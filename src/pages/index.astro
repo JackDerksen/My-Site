@@ -1,12 +1,7 @@
 ---
-
+const pageTitle = "Contact"
 ---
 
-<a href="/">Home</a>
-<a href="/about/">About</a>
-<a href="/projects/">Projects</a>
-<a href="/pinboard/">PinBoard</a>
-<a href="/contact/">Contact</a>
 
 <html lang="en">
 	<head>
@@ -14,10 +9,17 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+    <title>{pageTitle}</title>
 	</head>
 	<body>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/projects/">Projects</a>
+    <a href="/pinboard/">PinBoard</a>
+    <a href="/contact/">Contact</a>
+
 		<h1>Jack Derksen</h1>
     <p>Minimalist results from maximum effort.</p>
+
 	</body>
 </html>
