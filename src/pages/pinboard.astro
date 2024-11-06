@@ -1,24 +1,69 @@
 ---
-const pageTitle = "Pinboard"
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = [
+  {
+    title: "Currently Learning",
+    date: "2024-03-15",
+    content: "Your learning updates...",
+    tags: ["Learning", "Web Development"]
+  },
+  // Add more posts...
+];
 ---
 
+<BaseLayout title="Pinboard | Jack Derksen" description="Check out what I'm currently working on">
+  <div class="pinboard-content">
+    <h1>Pinboard</h1>
+    <div class="posts-grid">
+      {posts.map(post => (
+        <article class="post-card">
+          <div class="post-header">
+            <h2>{post.title}</h2>
+            <time datetime={post.date}>{new Date(post.date).toLocaleDateString()}</time>
+          </div>
+          <p>{post.content}</p>
+          <div class="post-tags">
+            {post.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/projects/">Projects</a>
-    <a href="/pinboard/">PinBoard</a>
-    <a href="/contact/">Contact</a>
-    <h1>{pageTitle}</h1>
-    <h2>Header</h2>
+<style>
+  .posts-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
 
-    <p>Paragraph</p>
+  .post-card {
+    padding: var(--space-md);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+  }
 
-  </body>
-</html>
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+  }
+
+  .tag {
+    padding: var(--space-xs) var(--space-sm);
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+  }
+</style>

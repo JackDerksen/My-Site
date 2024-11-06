@@ -1,24 +1,71 @@
 ---
-const pageTitle = "Projects"
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: "Project 1",
+    description: "Description of project 1",
+    github: "https://github.com/yourusername/project1",
+    tags: ["TypeScript", "React", "Node.js"]
+  },
+  // Add more projects...
+];
 ---
 
+<BaseLayout title="Projects | Jack Derksen" description="View my programming projects and experiments">
+  <div class="projects-content">
+    <h1>Projects</h1>
+    <div class="projects-grid">
+      {projects.map(project => (
+        <article class="project-card">
+          <h2>{project.title}</h2>
+          <p>{project.description}</p>
+          <div class="project-tags">
+            {project.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+          <a href={project.github} class="project-link">View on GitHub</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/projects/">Projects</a>
-    <a href="/pinboard/">PinBoard</a>
-    <a href="/contact/">Contact</a>
-    <h1>{pageTitle}</h1>
-    <h2>Header</h2>
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
 
-    <p>Paragraph</p>
+  .project-card {
+    padding: var(--space-md);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-normal);
+  }
 
-  </body>
-</html>
+  .project-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin: var(--space-sm) 0;
+  }
+
+  .tag {
+    padding: var(--space-xs) var(--space-sm);
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: var(--space-sm);
+  }
+</style>

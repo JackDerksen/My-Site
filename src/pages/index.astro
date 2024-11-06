@@ -1,25 +1,28 @@
 ---
-const pageTitle = "Contact"
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
+<BaseLayout title="Jack Derksen">
+  <div class="home-content">
+    <h1 class="name">Jack Derksen</h1>
+    <p class="quote">"Your inspirational quote here"</p>
+  </div>
+</BaseLayout>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-	</head>
-	<body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/projects/">Projects</a>
-    <a href="/pinboard/">PinBoard</a>
-    <a href="/contact/">Contact</a>
+<style>
+  .home-content {
+    text-align: center;
+  }
 
-		<h1>Jack Derksen</h1>
-    <p>Minimalist results from maximum effort.</p>
+  .name {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
 
-	</body>
-</html>
+  .quote {
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    font-style: italic;
+  }
+</style>

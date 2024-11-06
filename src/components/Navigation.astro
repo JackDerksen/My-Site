@@ -1,0 +1,97 @@
+---
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/pinboard', label: 'Pinboard' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<nav class="nav-menu" id="navMenu" aria-hidden="true">
+  <div class="nav-backdrop"></div>
+  <div class="nav-content">
+    {navItems.map((item, index) => (
+      <a 
+        href={item.href}
+        class="nav-item"
+        style={`--item-index: ${index};`}
+        data-astro-prefetch
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .nav-menu {
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    pointer-events: none;
+    z-index: var(--z-nav);
+  }
+
+  .nav-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: color-mix(in srgb, var(--bg-primary) 60%, transparent);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+
+  .nav-content {
+    position: absolute;
+    top: 0;
+    right: var(--side-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    transform: translateY(-1rem);
+  }
+
+  .nav-item {
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: var(--space-xs) var(--space-sm);
+    opacity: 0;
+    transform: translateY(-1rem);
+    transition: all var(--transition-normal);
+  }
+
+  .nav-item:hover {
+    color: var(--accent-primary);
+    transform: translateX(var(--space-sm)) translateY(-1rem);
+  }
+
+  /* Active State */
+  .nav-menu.active {
+    pointer-events: auto;
+  }
+
+  .nav-menu.active .nav-backdrop {
+    opacity: 1;
+  }
+
+  .nav-menu.active .nav-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--item-index) * 100ms);
+  }
+
+  /* Mobile Adjustments */
+  @media (max-width: 768px) {
+    .nav-content {
+      right: 0;
+      width: 100%;
+      align-items: center;
+      background-color: var(--bg-secondary);
+    }
+  }
+</style>

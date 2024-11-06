@@ -1,24 +1,65 @@
 ---
-const pageTitle = "Contact"
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
+<BaseLayout title="Contact | Jack Derksen" description="Get in touch with me">
+  <div class="contact-content">
+    <h1>Contact</h1>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>Feel free to reach out through any of these channels:</p>
+        <ul class="contact-links">
+          <li>
+            <a href="mailto:your.email@example.com">Email</a>
+          </li>
+          <li>
+            <a href="https://github.com/yourusername">GitHub</a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/yourusername">LinkedIn</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/projects/">Projects</a>
-    <a href="/pinboard/">PinBoard</a>
-    <a href="/contact/">Contact</a>
-    <h1>{pageTitle}</h1>
-    <h2>Header</h2>
+<style>
+  .contact-content {
+    padding: var(--space-lg) 0;
+  }
 
-    <p>Paragraph</p>
+  .contact-grid {
+    margin-top: var(--space-lg);
+  }
 
-  </body>
-</html>
+  .contact-info {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-links {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-md);
+  }
+
+  .contact-links li {
+    margin-bottom: var(--space-sm);
+  }
+
+  .contact-links a {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+  }
+
+  .contact-links a:hover {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: translateX(var(--space-sm));
+  }
+</style>
